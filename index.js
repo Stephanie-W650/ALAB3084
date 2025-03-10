@@ -1,3 +1,60 @@
+//Part 1: Refactoring Old Code
+//Part 1: Fizz Buzz
+let number = []
+
+for (i = 1; i <= 100; i++) {
+    if (i % 3 == 0) {
+        number.push("Fizz")       
+    } else if (i % 5 == 0) {
+        
+        number.push("Buzz")   
+    } else if (i % 3 == 0 && i % 5 ==0) {
+        number.push("Fizz Buzz")
+    } else if (i % 3 !== 0 && i % 5 !==0) {
+        number.push(i)
+    }
+}
+
+console.log(number.join())
+
+//Part 2: Prime Time
+//https://www.geeksforgeeks.org/check-a-number-is-prime-or-not-using-javascript/
+//Sieve of Eratosthenes Algorithm
+let n = 17;
+let max = 50;
+let a = new Array(max + 1).fill(true);
+
+a[0] = a[1] = false
+
+for (let i = 2; i * i <= max; i++) {
+if (a[i]) {
+    for (let j = i * i; j <= max; j += i) {
+        a[j] = false;
+    }
+}
+}
+
+
+for (let i = n; i <= max; i++) {
+    if (a[i]) {
+        console.log(i)      
+    }
+}
+
+//Part 3: Feeling Loopy
+// use array join
+let csvRe = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26"
+let rowsRe = csvRe.split("\n")
+
+console.log(rowsRe)
+
+for (let i = 0; i < rowsRe.length; i++) {
+    let cells = rowsRe[i].split(',')
+ console.log(cells.join(','))
+
+}
+
+
 //Part 2: Expanding Functionality
 let csv = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26"
 let rows = csv.split("\n")
@@ -123,8 +180,8 @@ let data =
   ]
 
 //Remove the last element from the sorted array.
-  let data1= data.pop()
-  console.log(data)
+let data1 = data.pop()
+console.log(data)
 
 //Insert the following object at index 1
 
@@ -139,10 +196,10 @@ console.log(data)
 
 let dataLength = data.length
 console.log(dataLength)
-let ages=[];
+let ages = [];
 for (i = 0; i < dataLength; i++) {
-     ages[i] = data[i].age 
-    
+  ages[i] = data[i].age
+
 }
 console.log(ages) // [ '41', '25', '19', '58', '111' ]
 
@@ -150,7 +207,7 @@ console.log(ages) // [ '41', '25', '19', '58', '111' ]
 //https://www.geeksforgeeks.org/how-to-convert-array-of-strings-to-array-of-numbers-in-javascript/#using-reduce-method-of-javascript
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
 //we already learned Array, so I think we can use reduce
-let newArray = ages.reduce( (acc, x ) => acc.concat(+x), [])
+let newArray = ages.reduce((acc, x) => acc.concat(+x), [])
 console.log(newArray) //[ 41, 25, 19, 58, 111 ]
 //https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
 
@@ -163,3 +220,25 @@ for (t = 0; t < ages.length; t++) {
 
 //Part 5: Full Circle
 
+let file = [
+  { id: "42", name: "Bruce", occupation: "Knight", age: "41" },
+  { id: "48", name: "Barry", occupation: "Runner", age: "25" },
+  { id: "57", name: "Bob", occupation: "Fry Cook", age: "19" },
+  { id: "63", name: "Blaine", occupation: "Quiz Master", age: "58" },
+  { id: "7", name: "Bilbo", occupation: "None", age: "111" }]
+
+  let csvData = [];
+  let string = "ID,Name,Occupation,Age" //after console.log, found that the loop below doesnot give the first line
+  csvData.push(string)
+  for (let i = 0; i < file.length; i++) {
+    let row = file[i]
+    let aRow = row.id + "," + row.name + "," + row.occupation +"," + row.age
+    csvData.push(aRow)
+  }
+  console.log("csvData")
+  console.log(csvData)
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join
+//https://www.w3schools.com/jsref/jsref_join.asp
+
+  let csvFinal = csvData.join(',')
+  console.log(csvFinal)
